@@ -1,5 +1,6 @@
 ## Aula 06: Validação Fluente + Testes do TextField
 
+- Gist: https://gist.github.com/omariosouto/344d893bf2428838af3a715cc29ba3e4
 ### Vamos fazer as validações dos Campos!
 - Da pra fazer sempre na mão MAAAAS
   - https://github.com/jquense/yup
