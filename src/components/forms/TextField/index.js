@@ -26,8 +26,14 @@ export default function TextField({
   name,
   onChange,
   value,
+  error,
+  isTouched,
   ...props
 }) {
+  const hasError = Boolean(error);
+  const isFieldInvalid = hasError && isTouched;
+  const errorLabel = `textField_error_label_${name}`;
+
   return (
     <InputWrapper>
       <Input
@@ -38,13 +44,33 @@ export default function TextField({
         value={value}
         {...props}
       />
+
+      {isFieldInvalid && (
+        <Text
+          variant="smallestException"
+          color="error.main"
+          id={errorLabel}
+          role="alert"
+        >
+          {error.message}
+        </Text>
+      )}
     </InputWrapper>
   );
 }
+
+TextField.defaultProps = {
+  error: undefined,
+  isTouched: false,
+};
 
 TextField.propTypes = {
   placeholder: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  error: PropTypes.shape({
+    message: PropTypes.string,
+  }),
+  isTouched: PropTypes.bool,
 };
