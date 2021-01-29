@@ -1,5 +1,7 @@
 ## Aula 03: Page Objects e padronização nos testes de integração
 
+- Gist: https://gist.github.com/omariosouto/704712e34809149d6ba90f3666d0f688
+
 - Alguns detalhes ficaram soltos aqui no nosso código:
   - Organização do código do teste
   - como estruturar um teste
