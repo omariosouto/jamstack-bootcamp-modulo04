@@ -1,6 +1,6 @@
 ## Aula 05: Testando Componentes com React Testing Library
 
-- https://gist.github.com/omariosouto/e743d097c0ad28acab669b83320fafb2
+- Gist: https://gist.github.com/omariosouto/e743d097c0ad28acab669b83320fafb2
 
 - Para testar componentes
   - Precisamos ter um browser em memória
