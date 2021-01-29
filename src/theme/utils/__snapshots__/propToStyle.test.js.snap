@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`propToStyle() when receive an argument with breakpoints renders only the received ones 1`] = `
+Array [
+  Array [
+    "@media screen and (min-width:",
+    "0",
+    "px){",
+    "color: red;",
+    "}",
+  ],
+  Array [
+    "@media screen and (min-width:",
+    "768",
+    "px){",
+    "color: blue;",
+    "}",
+  ],
+]
+`;
