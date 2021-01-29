@@ -32,9 +32,11 @@ export const isStaging = isServer
 ```
 
 ===========
+
 - E agora? 
   - Só vamos fazer o happy path*
     - Ou coisas que REALMENTE são cruciais e impactam agressivamente o negócio
     - Piramide de testes
       - https://devporai.com.br/wp-content/uploads/2020/02/Pir%C3%A2mide-testes.png
   - Testes e2e
+  - https://jestjs.io/
