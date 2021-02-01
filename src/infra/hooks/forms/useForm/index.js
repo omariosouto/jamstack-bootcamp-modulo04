@@ -17,7 +17,7 @@ export function useForm({
 }) {
   const [values, setValues] = React.useState(initialValues);
 
-  const [isFormDisabled, setIsFormDisabled] = React.useState(false);
+  const [isFormDisabled, setIsFormDisabled] = React.useState(true);
   const [errors, setErrors] = React.useState({});
   const [touched, setTouchedFields] = React.useState({});
   async function validateValues(currentValues) {

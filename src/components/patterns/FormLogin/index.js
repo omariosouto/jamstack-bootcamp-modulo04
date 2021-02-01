@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
 import { useForm } from '../../../infra/hooks/forms/useForm';
@@ -21,7 +22,7 @@ async function validateSchema(values) {
   });
 }
 
-export default function LoginForm() {
+export default function LoginForm({ onSubmit }) {
   const router = useRouter();
 
   const form = useForm({
@@ -31,6 +32,7 @@ export default function LoginForm() {
     },
     validateSchema,
     onSubmit(values) {
+      form.setIsFormDisabled(true);
       loginService.login({
         username: values.usuario,
         password: values.senha,
@@ -41,6 +43,9 @@ export default function LoginForm() {
         .catch((err) => {
           // eslint-disable-next-line no-console
           console.error(err);
+        })
+        .finally(() => {
+          form.setIsFormDisabled(false);
         });
     },
   });
@@ -48,7 +53,7 @@ export default function LoginForm() {
   return (
     <form
       id="formCadastro"
-      onSubmit={form.handleSubmit}
+      onSubmit={onSubmit || form.handleSubmit}
     >
       <TextField
         placeholder="Usuário"
@@ -85,3 +90,7 @@ export default function LoginForm() {
     </form>
   );
 }
+
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
