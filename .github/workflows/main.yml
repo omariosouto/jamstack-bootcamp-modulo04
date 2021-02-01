@@ -36,7 +36,6 @@ jobs:
         run: yarn lint
 
   unit_tests:
-    needs: cache_deps
     name: Unit Tests
     runs-on: ubuntu-latest # The type of runner that the job will run on
     steps: # Steps represent a sequence of tasks that will be executed as part of the job
