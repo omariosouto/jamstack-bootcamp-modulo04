@@ -25,8 +25,8 @@ async function HttpClient(url, { headers, body, ...options }) {
 
 export const loginService = {
   // Destructuring define contratos também
-  async login({ username, password }) {
-    return HttpClient(`${BASE_URL}/api/login`, {
+  async login({ username, password }, HttpClientModule = HttpClient, setCookieModule = setCookie) {
+    return HttpClientModule(`${BASE_URL}/api/login`, {
       method: 'POST',
       body: {
         username,
@@ -34,10 +34,15 @@ export const loginService = {
       },
     }).then((response) => {
       const { token } = response.data;
+      const hasToken = Boolean(token);
+      if (!hasToken) {
+        throw new Error('There is no token!');
+      }
+
       const DAY_IN_SECONDS = 86400;
       const WEEK_IN_SECONDS = DAY_IN_SECONDS * 7;
 
-      setCookie(null, 'APP_TOKEN', token, {
+      setCookieModule(null, 'APP_TOKEN', token, {
         maxAge: WEEK_IN_SECONDS,
         path: '/',
       });
@@ -47,7 +52,7 @@ export const loginService = {
       };
     });
   },
-  logout() {
-    destroyCookie(null, 'APP_TOKEN');
+  logout(destroyCookieModule = destroyCookie) {
+    destroyCookieModule(null, 'APP_TOKEN');
   },
 };
