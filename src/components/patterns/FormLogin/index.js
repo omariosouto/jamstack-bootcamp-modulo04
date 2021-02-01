@@ -21,7 +21,7 @@ async function validateSchema(values) {
   });
 }
 
-export default function LoginForm() {
+export default function LoginForm({ onSubmit }) {
   const router = useRouter();
 
   const form = useForm({
@@ -31,6 +31,7 @@ export default function LoginForm() {
     },
     validateSchema,
     onSubmit(values) {
+      form.setIsFormDisabled(true);
       loginService.login({
         username: values.usuario,
         password: values.senha,
@@ -41,6 +42,9 @@ export default function LoginForm() {
         .catch((err) => {
           // eslint-disable-next-line no-console
           console.error(err);
+        })
+        .finally(() => {
+          form.setIsFormDisabled(false);
         });
     },
   });
@@ -48,7 +52,7 @@ export default function LoginForm() {
   return (
     <form
       id="formCadastro"
-      onSubmit={form.handleSubmit}
+      onSubmit={onSubmit || form.handleSubmit}
     >
       <TextField
         placeholder="Usuário"
