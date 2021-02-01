@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
 import { useForm } from '../../../infra/hooks/forms/useForm';
@@ -89,3 +90,7 @@ export default function LoginForm({ onSubmit }) {
     </form>
   );
 }
+
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
